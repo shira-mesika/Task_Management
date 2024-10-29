@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Add a task{% endblock %}
+
+{% block content %}
+    <h1>Add A Task</h1>
+    <!-- Form to Add a Task -->
+    <form action="/add" method="POST" class="mb-4">
+        <div class="form-group">
+            <label for="title">Task Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter task title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Task Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter task description" required></textarea>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="completed" name="completed">
+            <label class="form-check-label" for="completed">Completed</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Add Task</button>
+    </form>
+{% endblock %}

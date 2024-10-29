@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}To-Do List{% endblock %}
+{% block content %}
+    <!-- Show all tasks -->
+   <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ task.title }}</strong>
+                    <p>{{ task.description }}</p>
+                    <span {% if task.completed %}style="color: green;"{% endif %}>
+                        {% if task.completed %}Completed{% else %}Not Completed{% endif %}
+                    </span>
+                </div>
+                <div>
+                    <a href="{{ url_for('toggle_complete', task_id=task.id) }}"  class="btn btn-sm {% if task.completed %}btn-success{% else %}btn-warning{% endif %}">
+                        {% if task.completed %}Completed{% else %}Mark as Done{% endif %}
+                    </a>
+                     <a href="{{ url_for('update_task', task_id=task.id) }}" class="btn btn-info btn-sm">Update</a>
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </li>
+        {% else %}
+            <li class="list-group-item">No tasks yet!</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
